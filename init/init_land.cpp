@@ -39,10 +39,10 @@
 #include <android-base/file.h>
 #include <android-base/properties.h>
 #include <android-base/strings.h>
+#include <android-base/logging.h>
 
 #include "property_service.h"
 #include "util.h"
-#include "vendor_init.h"
 
 static std::string board_id;
 
@@ -60,6 +60,9 @@ void property_override(char const prop[], char const value[])
     else
         __system_property_add(prop, strlen(prop), value, strlen(value));
 }
+
+namespace android {
+namespace init {
 
 static void init_alarm_boot_properties()
 {
@@ -141,6 +144,10 @@ void init_variant_properties()
 
 void vendor_load_properties()
 {
+    LOG(INFO) << __func__ << "\n";
+
     init_alarm_boot_properties();
     init_variant_properties();
 }
+}  // namespace init
+}  // namespace android
