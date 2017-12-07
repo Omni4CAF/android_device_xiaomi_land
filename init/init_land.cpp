@@ -64,6 +64,9 @@ void property_override(char const prop[], char const value[])
 namespace android {
 namespace init {
 
+namespace android {
+namespace init {
+
 static void init_alarm_boot_properties()
 {
     char const *boot_reason_file = "/proc/sys/kernel/boot_reason";
